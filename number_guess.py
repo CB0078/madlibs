@@ -16,31 +16,32 @@ def person_guess(x, y):
     print(f"You guessed correctly! The secret number is {answer}.")
 
 
-def computer_guess(answer, lower_bound, upper_bound, guess_limit):
+def computer_guess(lower_bound, upper_bound, guess_limit):
     """Computer must guess number b/w 1 and 10."""
 
     guess_count = 0
-    computer_guess = random.randint(lower_bound, upper_bound)
 
     while guess_count < guess_limit:
+        computer_guess = random.randint(lower_bound, upper_bound)
         guess_count += 1
-        if computer_guess < answer:
+        feedback = input(f"Is {computer_guess} too high (H), too low (L), or correct (C)?: ").lower()
+        if feedback == 'l':
             print(f"Guess {guess_count}: {computer_guess} --> too low")
             lower_bound = computer_guess + 1
             computer_guess = random.randint(lower_bound, upper_bound)
-        elif computer_guess > answer:
+        elif feedback == 'h':
             print(f"Guess {guess_count}: {computer_guess} --> too high")
             upper_bound = computer_guess - 1
             computer_guess = random.randint(lower_bound, upper_bound)
-        else:
+        elif feedback == 'c':
             print(f"Guess {guess_count}: {computer_guess} --> correct! \n"
                   f"Was able to guess on attempt {guess_count}.")
             break
 
-    if computer_guess != answer:
+    if feedback != 'c':
         print(f"Could not guess.")
 
-computer_guess(5, 1, 10, 3)
+computer_guess(1, 10, 3)
 
 
 
