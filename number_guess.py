@@ -12,7 +12,7 @@ def number_guess(x, y):
             print("Too high, guess again!")
         elif guess < answer:
             print("Too low, guess again!")
-        else:
-            print(f"You guessed correctly! The secret number is {answer}.")
+
+    print(f"You guessed correctly! The secret number is {answer}.")
 
 number_guess(0, 10)
